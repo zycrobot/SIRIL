@@ -1,0 +1,81 @@
+<launch>
+  <arg name="reference_frame" default="/map"/>
+  <arg name="units" default="mm"/>
+  <arg name="publish_rate" default="1000"/>
+
+
+  <group ns="left_device">
+    <node name="omni_state" pkg="omni_common" type="omni_state" output="screen">
+      <param name="device_name" value="Left Device"/>
+      <param name="omni_name" value="phantom"/>
+      <param name="publish_rate" value="$(arg publish_rate)"/>
+      <param name="reference_frame" value="$(arg reference_frame)"/>
+      <param name="units" value="$(arg units)"/>
+    </node>
+  </group>
+
+  <group ns="right_device">
+    <node name="omni_state" pkg="omni_common" type="omni_state" output="screen">
+      <param name="device_name" value="Right Device"/>
+      <param name="omni_name" value="phantom"/>
+      <param name="publish_rate" value="$(arg publish_rate)"/>
+      <param name="reference_frame" value="$(arg reference_frame)"/>
+      <param name="units" value="$(arg units)"/>
+    </node>
+  </group>
+
+
+  <group ns="left_manipulator">
+    <node name="omni_subscriber_node" pkg="omni_subscriber" type="omni_subscriber_node.py" output="screen">
+      <param name="port" value="/dev/ttyUSB0"/>
+      <param name="pose" value="/left_device/phantom/state"/>
+    </node>
+  </group>
+
+
+  <group ns="right_manipulator">
+    <node name="omni_subscriber_node" pkg="omni_subscriber" type="omni_subscriber_node.py" output="screen">
+      <param name="port" value="/dev/ttyUSB1"/>
+      <param name="pose" value="/right_device/phantom/state"/>
+    </node>
+  </group>
+
+
+  <!-- <group ns="right_manipulator">
+    <node name="camera_node" pkg="vision" type="imagepub.py" output="screen">
+      <param name="topic" value="/rawimage"/>
+    </node>
+  </group> -->
+
+
+
+
+  <arg name="bagfile_name" default="/media/microlab/data/ubuntu_data_file/bagdata/bagdata/fast_control_$(arg timestamp).bag"/>  
+  <!-- <arg name="bagfile_name" default="/home/microlab/peel_data_$(arg timestamp).bag"/>   -->
+  <arg name="timestamp" default=""/>  
+
+
+<!-- Define the node that will run the rosbag record command -->
+  <node pkg="rosbag" type="record" name="rosbag_record" args=" 
+          -O $(arg bagfile_name)
+          /left_device/phantom/button 
+          /left_device/phantom/force_feedback 
+          /left_device/phantom/joint_states 
+          /left_device/phantom/pose 
+          /left_device/phantom/state 
+          /left_manipulator/omni_subscriber_node/micro_pose 
+          /right_device/phantom/button 
+          /right_device/phantom/force_feedback 
+          /right_device/phantom/joint_states 
+          /right_device/phantom/pose 
+          /right_device/phantom/state 
+          /right_manipulator/omni_subscriber_node/micro_pose
+          " 
+        output="screen">
+    <!-- Remap any topics if necessary -->
+    <!-- <remap from="old_topic" to="new_topic" /> -->
+  </node>
+
+
+
+</launch>

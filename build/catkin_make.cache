@@ -1,0 +1,2 @@
+forcep:omni_common:omni_description:omni_msgs:omni_subscriber:vision
+-DCATKIN_DEVEL_PREFIX=/home/microlab/testTouch/devel -DCMAKE_INSTALL_PREFIX=/home/microlab/testTouch/install -G Unix Makefiles
