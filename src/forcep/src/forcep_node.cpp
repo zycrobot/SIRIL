@@ -173,7 +173,6 @@ void joint_states_callback(const sensor_msgs::JointState::ConstPtr joint_states)
     ROS_INFO("join = [%.3f] [%.3f] [%.3f] [%.3f] [%.3f] [%.3f]", joint_states->position[0], 
     joint_states->position[1], joint_states->position[2], joint_states->position[3], 
     joint_states->position[4], joint_states->position[5]);
-    ;
 }
 
 void button_callback(const omni_msgs::OmniButtonEvent::ConstPtr button_states){
