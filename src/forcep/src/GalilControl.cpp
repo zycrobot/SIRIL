@@ -1,4 +1,5 @@
 #include "GalilControl.h"
+#include <ros/ros.h>
 
 GReturn InitMotor(GCon g, char axis)
 {
@@ -220,7 +221,6 @@ GReturn StopMotor(GCon g, char axis)
     char buf[G_SMALL_BUFFER];
     sprintf(buf, "ST%c", axis);
     galil(GCmd(g, buf));
-
     sprintf(buf, "%c", axis);
     galil(GMotionComplete(g, buf));
 

@@ -68,13 +68,11 @@
 
 
 
-  <arg name="bagfile_name" default="/media/microlab/data/ubuntu_data_file/bagdata/bagdata/phantom_forcep_$(arg timestamp).bag"/>  
-  <!-- <arg name="bagfile_name" default="/home/microlab/peel_data_$(arg timestamp).bag"/>   -->
-  <arg name="timestamp" default=""/>  
+  <!-- <arg name="bagfile_name" default="/media/microlab/data/ubuntu_data_file/bagdata/bagdata/phantom_forcep_$(arg timestamp).bag"/>   -->
+  <!-- <arg name="timestamp" default=""/>   -->
 
 
-<!-- Define the node that will run the rosbag record command -->
-  <node pkg="rosbag" type="record" name="rosbag_record" args=" 
+  <!-- <node pkg="rosbag" type="record" name="rosbag_record" args=" 
           -O $(arg bagfile_name)
           /left_device/phantom/button 
           /left_device/phantom/force_feedback 
@@ -88,9 +86,7 @@
           /right_device/phantom/state 
           " 
         output="screen">
-    <!-- Remap any topics if necessary -->
-    <!-- <remap from="old_topic" to="new_topic" /> -->
-  </node>
+  </node> -->
 
 
 

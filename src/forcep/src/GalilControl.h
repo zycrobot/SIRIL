@@ -22,6 +22,7 @@ inline void galil(GReturn rc)
 {
     if (rc != G_NO_ERROR)
         throw rc;
+    // std::cout<<"### galil"<<std::endl;
 }
 
 //! An example of error handling and debugging information.
