@@ -29,74 +29,106 @@ GCon g = 0;
 
 
 GReturn Forcep_right_motor_init(GCon g){
-    char buf[G_SMALL_BUFFER]; //traffic buffer
-    char forcep_axis = 'C';
-    // int position_hold = 8500;  //TODO need calibration
-    int position_release =2100;
-    int grasp_rotate_speed=1000;
 
-    StopMotor(g, forcep_axis);
-    GoHome2(g,forcep_axis);// first triggered photoelectric gate
-    GoPosition(g,forcep_axis,position_release,grasp_rotate_speed);// then go to init position
-    galil(GMotionComplete(g, "C")); //Wait for motion to complete
-    galil(GCmd(g, "STC"));    // stop motor
-    galil(GMotionComplete(g, "C")); //Wait for motion to complete
-    galil(GCmd(g, "PTC=1"));
-    galil(GCmd(g, "SPC=4000"));   // speed
-    galil(GCmd(g, "ACC=20000"));   // acceleration
-    galil(GCmd(g, "DCC=20000"));   // deceleration
+    try{
+        char buf[G_SMALL_BUFFER]; //traffic buffer
+        char forcep_axis = 'C';
+        // int position_hold = 8500;  //TODO need calibration
+        int position_release =2100;
+        int grasp_rotate_speed=1000;
 
-    ROS_INFO("###axis C set");
+        StopMotor(g, forcep_axis);
+        GoHome2(g,forcep_axis);// first triggered photoelectric gate
+        GoPosition(g,forcep_axis,position_release,grasp_rotate_speed);// then go to init position
+        galil(GMotionComplete(g, "C")); //Wait for motion to complete
+        galil(GCmd(g, "STC"));    // stop motor
+        galil(GMotionComplete(g, "C")); //Wait for motion to complete
+        galil(GCmd(g, "PTC=1"));
+        galil(GCmd(g, "SPC=4000"));   // speed
+        galil(GCmd(g, "ACC=20000"));   // acceleration
+        galil(GCmd(g, "DCC=20000"));   // deceleration
 
-    char rotate_axis = 'D';
-    int rotate_position1=2500;
-    int rotate_position2=-2500;
+        ROS_INFO("###axis C set");       
+    }
+    catch(...){
+        ROS_INFO("### Wrong : axis C can't init");
+    }
 
-    galil(GCmd(g, "SHD"));          // Set servo here
-    galil(GCmd(g, "PTD=1"));        // Start position tracking mode on D axis
-    galil(GCmd(g, "DPD=0"));        // Start position at absolute zero
-    galil(GCmd(g, "SPD=2000"));   // speed
-    galil(GCmd(g, "ACD=20000"));   // acceleration
-    galil(GCmd(g, "DCD=20000"));   // deceleration
 
-    ROS_INFO("###axis D set");
+    try{
+            char rotate_axis = 'D';
+        int rotate_position1=2500;
+        int rotate_position2=-2500;
+
+        galil(GCmd(g, "SHD"));          // Set servo here
+        galil(GCmd(g, "PTD=1"));        // Start position tracking mode on D axis
+        galil(GCmd(g, "DPD=0"));        // Start position at absolute zero
+        galil(GCmd(g, "SPD=2000"));   // speed
+        galil(GCmd(g, "ACD=20000"));   // acceleration
+        galil(GCmd(g, "DCD=20000"));   // deceleration
+
+        ROS_INFO("###axis D set");
+    }
+
+    catch(...){
+        ROS_INFO("### Wrong : axis D can't init");
+    }
+
+
+
     return GALIL_EXAMPLE_OK;
 }
 
 
 
 GReturn Forcep_left_motor_init(GCon g){
-    char buf[G_SMALL_BUFFER]; //traffic buffer
-    char forcep_axis = 'A';
-    // int position_hold = 8500;  //TODO need calibration
-    int position_release =2100;
-    int grasp_rotate_speed=1000;
 
-    StopMotor(g, forcep_axis);
-    GoHome2(g,forcep_axis);// first triggered photoelectric gate
-    GoPosition(g,forcep_axis,position_release,grasp_rotate_speed);// then go to init position
-    galil(GMotionComplete(g, "A")); //Wait for motion to complete
-    galil(GCmd(g, "STA"));    // stop motor
-    galil(GMotionComplete(g, "A")); //Wait for motion to complete
-    galil(GCmd(g, "PTA=1"));
-    galil(GCmd(g, "SPA=4000"));   // speed
-    galil(GCmd(g, "ACA=20000"));   // acceleration
-    galil(GCmd(g, "DCA=20000"));   // deceleration
+    try{
+        char buf[G_SMALL_BUFFER]; //traffic buffer
+        char forcep_axis = 'A';
+        // int position_hold = 8500;  //TODO need calibration
+        int position_release =2100;
+        int grasp_rotate_speed=1000;
 
-    ROS_INFO("###axis A set");
+        StopMotor(g, forcep_axis);
+        GoHome2(g,forcep_axis);// first triggered photoelectric gate
+        GoPosition(g,forcep_axis,position_release,grasp_rotate_speed);// then go to init position
+        galil(GMotionComplete(g, "A")); //Wait for motion to complete
+        galil(GCmd(g, "STA"));    // stop motor
+        galil(GMotionComplete(g, "A")); //Wait for motion to complete
+        galil(GCmd(g, "PTA=1"));
+        galil(GCmd(g, "SPA=4000"));   // speed
+        galil(GCmd(g, "ACA=20000"));   // acceleration
+        galil(GCmd(g, "DCA=20000"));   // deceleration
 
-    char rotate_axis = 'B';
-    int rotate_position1=2500;
-    int rotate_position2=-2500;
+        ROS_INFO("###axis A set");
+    }
+    catch(...){
+        ROS_INFO("### Wrong : axis A can't init");
+    }
 
-    galil(GCmd(g, "SHB"));          // Set servo here
-    galil(GCmd(g, "PTB=1"));        // Start position tracking mode on D axis
-    galil(GCmd(g, "DPB=0"));        // Start position at absolute zero
-    galil(GCmd(g, "SPB=2000"));   // speed
-    galil(GCmd(g, "ACB=20000"));   // acceleration
-    galil(GCmd(g, "DCB=20000"));   // deceleration
 
-    ROS_INFO("###axis B set");
+    try{
+        char rotate_axis = 'B';
+        int rotate_position1=2500;
+        int rotate_position2=-2500;
+
+        galil(GCmd(g, "SHB"));          // Set servo here
+        galil(GCmd(g, "PTB=1"));        // Start position tracking mode on D axis
+        galil(GCmd(g, "DPB=0"));        // Start position at absolute zero
+        galil(GCmd(g, "SPB=2000"));   // speed
+        galil(GCmd(g, "ACB=20000"));   // acceleration
+        galil(GCmd(g, "DCB=20000"));   // deceleration
+
+        ROS_INFO("###axis B set"); 
+    }
+    catch(...){
+        ROS_INFO("### Wrong : axis B can't init");
+    }
+
+
+
+
     return GALIL_EXAMPLE_OK;
 }
 
@@ -115,6 +147,7 @@ int gcConnection()
     catch (GReturn gr)
     {
         error(g, gr); // see examples.h for error handling
+        ROSINFO("### 192.168.42.2 connection failed!");
         return GALIL_EXAMPLE_ERROR;
     }
     return GALIL_EXAMPLE_OK;
@@ -125,7 +158,7 @@ void left_joint_states_callback(const sensor_msgs::JointState::ConstPtr joint_st
     // ROS_INFO("join = [%.3f] [%.3f] [%.3f] [%.3f] [%.3f] [%.3f]", joint_states->position[0], 
     // joint_states->position[1], joint_states->position[2], joint_states->position[3], 
     // joint_states->position[4], joint_states->position[5]);
-    ;
+    // ;
 
 
     const double min_angle = -5.753408;
@@ -136,7 +169,7 @@ void left_joint_states_callback(const sensor_msgs::JointState::ConstPtr joint_st
 
     int encoder_value = static_cast<int>(((angle - min_angle) / (max_angle-min_angle)) *2*encode_half + (-1*encode_half));
 
-    ROS_INFO("goto = [%d]",encoder_value);
+    ROS_INFO("left::goto = [%d]",encoder_value);
 
     char buf[G_SMALL_BUFFER]; //traffic buffer
     char rotate_axis = 'B';
@@ -144,14 +177,13 @@ void left_joint_states_callback(const sensor_msgs::JointState::ConstPtr joint_st
     sprintf(buf, "PA%c=%d",rotate_axis,encoder_value);
     galil(GCmd(g, buf)); // position relative
     // galil(GMotionComplete(g, "D")); //Wait for motion to complete
-    std::cout << "rotate!!"<<std::endl;
+    std::cout << "left::rotate!!"<<std::endl;
 
 
 }
 
 void left_button_callback(const omni_msgs::OmniButtonEvent::ConstPtr button_states){
     ROS_INFO("left::white = [%d] gray = [%d]",button_states->white_button,button_states->grey_button);
-
 
     char buf[G_SMALL_BUFFER]; //traffic buffer
     char forcep_axis = 'A';
@@ -163,13 +195,13 @@ void left_button_callback(const omni_msgs::OmniButtonEvent::ConstPtr button_stat
         sprintf(buf, "PA%c=%d",forcep_axis,position_hold);
         galil(GCmd(g, buf)); // position relative
         // galil(GMotionComplete(g, "C")); //Wait for motion to complete
-        std::cout << "clamping"<<std::endl;
+        std::cout << "left::clamping"<<std::endl;
     }
     else{
         sprintf(buf, "PA%c=%d",forcep_axis,position_release);
         galil(GCmd(g, buf)); // position relative
         // galil(GMotionComplete(g, "C")); //Wait for motion to complete
-        std::cout << "release"<<std::endl;
+        std::cout << "left::release"<<std::endl;
     }
 
 
@@ -183,6 +215,8 @@ void right_joint_states_callback(const sensor_msgs::JointState::ConstPtr joint_s
     // ;
 
     return ;
+
+
     const double min_angle = -5.753408;
     const double max_angle = -0.524877;
     const double encode_half = 2500;
@@ -191,7 +225,7 @@ void right_joint_states_callback(const sensor_msgs::JointState::ConstPtr joint_s
 
     int encoder_value = static_cast<int>(((angle - min_angle) / (max_angle-min_angle)) *2*encode_half + (-1*encode_half));
 
-    ROS_INFO("goto = [%d]",encoder_value);
+    ROS_INFO("right::goto = [%d]",encoder_value);
 
     char buf[G_SMALL_BUFFER]; //traffic buffer
     char rotate_axis = 'D';
@@ -199,7 +233,7 @@ void right_joint_states_callback(const sensor_msgs::JointState::ConstPtr joint_s
     sprintf(buf, "PA%c=%d",rotate_axis,encoder_value);
     galil(GCmd(g, buf)); // position relative
     // galil(GMotionComplete(g, "D")); //Wait for motion to complete
-    std::cout << "rotate!!"<<std::endl;
+    std::cout << "right::rotate!!"<<std::endl;
 
 
 }
@@ -219,13 +253,13 @@ void right_button_callback(const omni_msgs::OmniButtonEvent::ConstPtr button_sta
         sprintf(buf, "PA%c=%d",forcep_axis,position_hold);
         galil(GCmd(g, buf)); // position relative
         // galil(GMotionComplete(g, "C")); //Wait for motion to complete
-        std::cout << "clamping"<<std::endl;
+        std::cout << "right::clamping"<<std::endl;
     }
     else{
         sprintf(buf, "PA%c=%d",forcep_axis,position_release);
         galil(GCmd(g, buf)); // position relative
         // galil(GMotionComplete(g, "C")); //Wait for motion to complete
-        std::cout << "release"<<std::endl;
+        std::cout << "right::release"<<std::endl;
     }
 
 }
