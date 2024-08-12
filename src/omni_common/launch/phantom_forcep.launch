@@ -26,12 +26,12 @@
 
 
 
-  <group ns="left_forcep">
+  <!-- <group ns="left_forcep">
     <node name="forcep_node" pkg="forcep" type="forcep_node" output="screen">
       <param name="joint_states_topic" value="/left_device/phantom/joint_states"/>
       <param name="button_topic" value="/left_device/phantom/button"/>
     </node>
-  </group>
+  </group> -->
 
 
   <group ns="right_forcep">
@@ -48,10 +48,10 @@
       <param name="port" value="/dev/ttyUSB0"/>
       <param name="pose" value="/left_device/phantom/state"/>
     </node>
-  </group>
+  </group> -->
 
 
-  <group ns="right_manipulator">
+  <!-- <group ns="right_manipulator">
     <node name="omni_subscriber_node" pkg="omni_subscriber" type="omni_subscriber_node.py" output="screen">
       <param name="port" value="/dev/ttyUSB1"/>
       <param name="pose" value="/right_device/phantom/state"/>

@@ -56,7 +56,7 @@ GReturn Forcep_right_motor_init(GCon g){
 
 
     try{
-            char rotate_axis = 'D';
+        char rotate_axis = 'D';
         int rotate_position1=2500;
         int rotate_position2=-2500;
 
@@ -66,10 +66,8 @@ GReturn Forcep_right_motor_init(GCon g){
         galil(GCmd(g, "SPD=2000"));   // speed
         galil(GCmd(g, "ACD=20000"));   // acceleration
         galil(GCmd(g, "DCD=20000"));   // deceleration
-
         ROS_INFO("###axis D set");
     }
-
     catch(...){
         ROS_INFO("### Wrong : axis D can't init");
     }
@@ -160,6 +158,7 @@ void left_joint_states_callback(const sensor_msgs::JointState::ConstPtr joint_st
     // joint_states->position[4], joint_states->position[5]);
     // ;
 
+    return;
 
     const double min_angle = -5.753408;
     const double max_angle = -0.524877;
@@ -183,6 +182,10 @@ void left_joint_states_callback(const sensor_msgs::JointState::ConstPtr joint_st
 }
 
 void left_button_callback(const omni_msgs::OmniButtonEvent::ConstPtr button_states){
+
+    return;
+
+
     ROS_INFO("left::white = [%d] gray = [%d]",button_states->white_button,button_states->grey_button);
 
     char buf[G_SMALL_BUFFER]; //traffic buffer
@@ -214,7 +217,7 @@ void right_joint_states_callback(const sensor_msgs::JointState::ConstPtr joint_s
     // joint_states->position[4], joint_states->position[5]);
     // ;
 
-    return ;
+    // return ;
 
 
     const double min_angle = -5.753408;
@@ -225,7 +228,7 @@ void right_joint_states_callback(const sensor_msgs::JointState::ConstPtr joint_s
 
     int encoder_value = static_cast<int>(((angle - min_angle) / (max_angle-min_angle)) *2*encode_half + (-1*encode_half));
 
-    ROS_INFO("right::goto = [%d]",encoder_value);
+    // ROS_INFO("right::goto = [%d]",encoder_value);
 
     char buf[G_SMALL_BUFFER]; //traffic buffer
     char rotate_axis = 'D';
@@ -233,7 +236,7 @@ void right_joint_states_callback(const sensor_msgs::JointState::ConstPtr joint_s
     sprintf(buf, "PA%c=%d",rotate_axis,encoder_value);
     galil(GCmd(g, buf)); // position relative
     // galil(GMotionComplete(g, "D")); //Wait for motion to complete
-    std::cout << "right::rotate!!"<<std::endl;
+    // std::cout << "right::rotate!!"<<std::endl;
 
 
 }
@@ -241,7 +244,7 @@ void right_joint_states_callback(const sensor_msgs::JointState::ConstPtr joint_s
 void right_button_callback(const omni_msgs::OmniButtonEvent::ConstPtr button_states){
     ROS_INFO("right::white = [%d] gray = [%d]",button_states->white_button,button_states->grey_button);
 
-    return;
+    // return;
 
     char buf[G_SMALL_BUFFER]; //traffic buffer
     char forcep_axis = 'C';
@@ -282,8 +285,8 @@ int main(int argc, char *argv[])
     if(joint_states_topic.find("left") != std::string::npos){ //"left" in joint_states_topic
         ROS_INFO("###left subscribe");
 
-        gcConnection();
-        Forcep_left_motor_init(g);
+        // gcConnection();
+        // Forcep_left_motor_init(g);
 
         ros::Subscriber joint_sub = nh.subscribe<sensor_msgs::JointState>(joint_states_topic.c_str(), 1, left_joint_states_callback);
         ros::Subscriber button_sub = nh.subscribe<omni_msgs::OmniButtonEvent>(button_topic.c_str(), 1, left_button_callback);
@@ -291,8 +294,8 @@ int main(int argc, char *argv[])
     }
     else if(joint_states_topic.find("right") != std::string::npos){ //"right" in joint_states_topic
         ROS_INFO("###right subscribe");
-        // gcConnection();
-        // Forcep_right_motor_init(g);
+        gcConnection();
+        Forcep_right_motor_init(g);
         
         ros::Subscriber joint_sub = nh.subscribe<sensor_msgs::JointState>(joint_states_topic.c_str(), 1, right_joint_states_callback);
         ros::Subscriber button_sub = nh.subscribe<omni_msgs::OmniButtonEvent>(button_topic.c_str(), 1, right_button_callback);
