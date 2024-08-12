@@ -147,7 +147,7 @@ int gcConnection()
     catch (GReturn gr)
     {
         error(g, gr); // see examples.h for error handling
-        ROSINFO("### 192.168.42.2 connection failed!");
+        ROS_INFO("### 192.168.42.2 connection failed!");
         return GALIL_EXAMPLE_ERROR;
     }
     return GALIL_EXAMPLE_OK;
