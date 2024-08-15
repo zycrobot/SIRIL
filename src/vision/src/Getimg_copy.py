@@ -20,89 +20,94 @@ from PyQt5.QtGui  import qRed,qGreen,qBlue
 
 
 
-# class Getimg(QWidget):
-#     eventImage = pyqtSignal()
-#     def __init__(self):
-#         super(Getimg,self).__init__()
-#         self.hcam = None
-#         self.buf = None      # video buffer
-#         self.w = 0           # video width
-#         self.h = 0           # video height
-#         self.setFixedSize(1024, 600)
-#         self.cb = QCheckBox('Auto Exposure', self)
-#         self.cb.stateChanged.connect(self.changeAutoExposure)
-#         try:
-#             self.initCamera()
-#             print("init camera!")
-#         except:
-#             print("camera down!!")
+class MainWin(QWidget):
+    eventImage = pyqtSignal()
+    def __init__(self):
+        super(MainWin,self).__init__()
+        self.hcam = None
+        self.buf = None      # video buffer
+        self.w = 0           # video width
+        self.h = 0           # video height
+        # self.setFixedSize(1024, 600)
+        self.cb = QCheckBox('Auto Exposure', self)
+        self.cb.stateChanged.connect(self.changeAutoExposure)
+        try:
+            self.initCamera()
+            print("init camera!")
+        except:
+            print("camera down!!")
 
-# # the vast majority of callbacks come from bgimaging.dll/so/dylib internal threads, 
-# # so we use qt signal to post this event to the UI thread  
-#     @staticmethod
-#     def cameraCallback(nEvent, ctx):
-#         if nEvent == bgimaging.BGIMAGING_EVENT_IMAGE:
-#             ctx.eventImage.emit()
+# the vast majority of callbacks come from bgimaging.dll/so/dylib internal threads, 
+# so we use qt signal to post this event to the UI thread  
+    @staticmethod
+    def cameraCallback(nEvent, ctx):
+        if nEvent == bgimaging.BGIMAGING_EVENT_IMAGE:
+            ctx.eventImage.emit()
 
-# # run in the UI thread
-#     @pyqtSlot()
-#     def eventImageSignal(self):
-#         if self.hcam is not None:
-#             try:
-#                 self.hcam.PullImageV2(self.buf, 24, None)
-#             except bgimaging.HRESULTException:
-#                 QMessageBox.warning(self, '', 'pull image failed', QMessageBox.Ok)
+# run in the UI thread
+    @pyqtSlot()
+    def eventImageSignal(self):
+        if self.hcam is not None:
+            try:
+                self.hcam.PullImageV2(self.buf, 24, None)
+            except bgimaging.HRESULTException:
+                QMessageBox.warning(self, '', 'pull image failed', QMessageBox.Ok)
 
-#     def generatecvimg(self):
-#         img = QImage(self.buf, self.w, self.h, (self.w * 24 + 31) // 32 * 4, QImage.Format_RGB888)
-#         qpixmap=QPixmap.fromImage(img)
-#         qimg = qpixmap.toImage()
-#         temp_shape = (qimg.height(), qimg.bytesPerLine() * 8 // qimg.depth())
-#         temp_shape += (4,)
-#         ptr = qimg.bits()
-#         ptr.setsize(qimg.byteCount())
-#         result = np.array(ptr, dtype=np.uint8).reshape(temp_shape)
-#         result = result[..., :3]
-#         return result
+    # def generatecvimg(self):
+    #     img = QImage(self.buf, self.w, self.h, (self.w * 24 + 31) // 32 * 4, QImage.Format_RGB888)
+    #     qpixmap=QPixmap.fromImage(img)
+    #     qimg = qpixmap.toImage()
+    #     temp_shape = (qimg.height(), qimg.bytesPerLine() * 8 // qimg.depth())
+    #     temp_shape += (4,)
+    #     ptr = qimg.bits()
+    #     ptr.setsize(qimg.byteCount())
+    #     result = np.array(ptr, dtype=np.uint8).reshape(temp_shape)
+    #     result = result[..., :3]
+    #     return result
 
-#     def initCamera(self):
-#         print('start open camera!')
-#         a = bgimaging.Bgcam.EnumV2()
-#         print("get camera name")
-#         if len(a) <= 0:
-#             print('No camera found')
-#             self.cb.setEnabled(False)
-#         else:
-#             self.camname = a[0].displayname
-#             self.setWindowTitle(self.camname)
-#             self.eventImage.connect(self.eventImageSignal)
-#             try:
-#                 self.hcam = bgimaging.Bgcam.Open(a[0].id)
+    def generatecvimg(self):
+        result = np.frombuffer(self.buf, dtype=np.uint8).reshape((self.h, self.w, 3))
+        return result
 
-#                 print("open camera")
-#             except bgimaging.HRESULTException:
-#                 QMessageBox.warning(self, '', 'failed to open camera', QMessageBox.Ok)
-#             else:
-#                 self.w, self.h = self.hcam.get_Size()
-#                 bufsize = ((self.w * 24 + 31) // 32 * 4) * self.h
-#                 self.buf = bytes(bufsize)
-#                 self.cb.setChecked(self.hcam.get_AutoExpoEnable())            
-#                 try:
-#                     if sys.platform == 'win32':
-#                         self.hcam.put_Option(bgimaging.BGIMAGING_OPTION_BYTEORDER, 0) # QImage.Format_RGB888
+    def initCamera(self):
+        print('start open camera!')
+        a = bgimaging.Bgcam.EnumV2()
+        print("get camera name")
+        if len(a) <= 0:
+            print('No camera found')
+            self.cb.setEnabled(False)
+        else:
+            self.camname = a[0].displayname
+            self.setWindowTitle(self.camname)
+            self.eventImage.connect(self.eventImageSignal)
+            try:
+                self.hcam = bgimaging.Bgcam.Open(a[0].id)
+
+                print("open camera")
+            except bgimaging.HRESULTException:
+                QMessageBox.warning(self, '', 'failed to open camera', QMessageBox.Ok)
+            else:
+                self.w, self.h = self.hcam.get_Size()
+                bufsize = ((self.w * 24 + 31) // 32 * 4) * self.h
+                self.buf = bytes(bufsize)
+                self.cb.setChecked(self.hcam.get_AutoExpoEnable())            
+                try:
+                    if sys.platform == 'win32':
+                        self.hcam.put_Option(bgimaging.BGIMAGING_OPTION_BYTEORDER, 0) # QImage.Format_RGB888
                     
-#                     self.hcam.StartPullModeWithCallback(self.cameraCallback, self)
-#                 except bgimaging.HRESULTException:
-#                     QMessageBox.warning(self, '', 'failed to start camera', QMessageBox.Ok)
+                    self.hcam.StartPullModeWithCallback(self.cameraCallback, self)
+                except bgimaging.HRESULTException:
+                    QMessageBox.warning(self, '', 'failed to start camera', QMessageBox.Ok)
 
-#     def changeAutoExposure(self, state):
-#         if self.hcam is not None:
-#             self.hcam.put_AutoExpoEnable(state == Qt.Checked)
+    def changeAutoExposure(self, state):
+        if self.hcam is not None:
+            self.hcam.put_AutoExpoEnable(state == Qt.Checked)
+            self.hcam.put_AutoExpoTarget(20)
 
-#     def closeEvent(self, event):
-#         if self.hcam is not None:
-#             self.hcam.Close()
-#             self.hcam = None
+    def closeEvent(self, event):
+        if self.hcam is not None:
+            self.hcam.Close()
+            self.hcam = None
 
 # class MainWin(QWidget):
 #     eventImage = pyqtSignal()
@@ -237,7 +242,7 @@ from PyQt5.QtGui  import qRed,qGreen,qBlue
 #             self.hcam = None
 
 
-class MainWin(QWidget):
+class MainWin1(QWidget):
     eventImage = pyqtSignal()
     
     def __init__(self):
@@ -296,6 +301,10 @@ class MainWin(QWidget):
         ptr.setsize(qimg.byteCount())
         result = np.array(ptr, dtype=np.uint8).reshape(temp_shape)
         result = result[..., :3]
+        return result
+
+    def generatecvimg(self):
+        result = np.frombuffer(self.buf, dtype=np.uint8).reshape((self.h, self.w, 3))
         return result
     
 

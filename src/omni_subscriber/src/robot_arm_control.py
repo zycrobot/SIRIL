@@ -122,8 +122,8 @@ class RobotSDK:
 def main():
 
     # assert len(sys.argv)==3
-    sdk=RobotSDK('/dev/ttyUSB0') #leftarm
-    # sdk=RobotSDK('/dev/ttyUSB0') #rightarm
+    # sdk=RobotSDK('/dev/ttyUSB0') #leftarm
+    sdk=RobotSDK('/dev/ttyUSB1') #rightarm
     sdk.swichToRemoteControl()
     
     x,y,z=sdk.positionQueryInMicrometers()

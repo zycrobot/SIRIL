@@ -26,6 +26,7 @@ class MainWin(QWidget):
         self.h = 0           # video height
         self.total = 0
 
+
         self.initUI()
         try:
             self.initCamera()
@@ -33,6 +34,7 @@ class MainWin(QWidget):
             print("camera down!!")
 
     def initUI(self):
+
         pass
 
 
@@ -76,13 +78,20 @@ class MainWin(QWidget):
             self.hcam.put_eSize(2)
             self.hcam.put_HZ(0)
             self.w, self.h = self.hcam.get_Size()
-            self.hcam.put_AutoExpoEnable(0)
+            self.hcam.put_AutoExpoEnable(1)
+            # self.hcam.put_MaxAutoExpoTimeAGain(70,1)
+            self.hcam.put_AutoExpoTarget(50)
+            # self.hcam.put_ExpoTime(70)
             print(">>> get resolution:",self.w, self.h)
             self.hz=self.hcam.get_HZ()
             print(">>> get Hz",self.hz)
             bufsize = ((self.w * 24 + 31) // 32 * 4) * self.h
             self.buf = bytes(bufsize)
             self.hcam.StartPullModeWithCallback(self.cameraCallback, self)
+            # self.hcam.put_AutoExpoEnable
+
+
+
 
     def __del__(self):
             # super().__del__()
