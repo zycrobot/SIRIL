@@ -6,4 +6,5 @@
 
 
 - [x] master-slave control for biarm
-- [ ] master-slave control for forcep
+- [x] master-slave control for forcep
+- [ ] imitation learning API
