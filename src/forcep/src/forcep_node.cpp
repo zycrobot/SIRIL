@@ -191,7 +191,8 @@ void left_button_callback(const omni_msgs::OmniButtonEvent::ConstPtr button_stat
     char buf[G_SMALL_BUFFER]; //traffic buffer
     char forcep_axis = 'A';
 
-    int position_hold = 8000;  //TODO need calibration
+    int position_hold = 7200;  //TODO need calibration
+    int position_hold_half=4000;
     int position_release =2100;
 
     if(button_states->white_button==0&button_states->grey_button==1){
@@ -200,8 +201,14 @@ void left_button_callback(const omni_msgs::OmniButtonEvent::ConstPtr button_stat
         // galil(GMotionComplete(g, "C")); //Wait for motion to complete
         std::cout << "left::clamping"<<std::endl;
     }
-    else{
+    else if(button_states->white_button==1&button_states->grey_button==0){
         sprintf(buf, "PA%c=%d",forcep_axis,position_release);
+        galil(GCmd(g, buf)); // position relative
+        // galil(GMotionComplete(g, "C")); //Wait for motion to complete
+        std::cout << "left::clamping"<<std::endl;
+    }
+    else{
+        sprintf(buf, "PA%c=%d",forcep_axis,position_hold_half);
         galil(GCmd(g, buf)); // position relative
         // galil(GMotionComplete(g, "C")); //Wait for motion to complete
         std::cout << "left::release"<<std::endl;
@@ -249,8 +256,9 @@ void right_button_callback(const omni_msgs::OmniButtonEvent::ConstPtr button_sta
     char buf[G_SMALL_BUFFER]; //traffic buffer
     char forcep_axis = 'C';
 
-    int position_hold = 8000;  //TODO need calibration
-    int position_release =2100;
+    int position_hold = 7200;  //TODO need calibration
+    int position_hold_half=5000;
+    int position_release =2500;
 
     if(button_states->white_button==0&button_states->grey_button==1){
         sprintf(buf, "PA%c=%d",forcep_axis,position_hold);
@@ -258,8 +266,14 @@ void right_button_callback(const omni_msgs::OmniButtonEvent::ConstPtr button_sta
         // galil(GMotionComplete(g, "C")); //Wait for motion to complete
         std::cout << "right::clamping"<<std::endl;
     }
-    else{
+    else if(button_states->white_button==1&button_states->grey_button==0){
         sprintf(buf, "PA%c=%d",forcep_axis,position_release);
+        galil(GCmd(g, buf)); // position relative
+        // galil(GMotionComplete(g, "C")); //Wait for motion to complete
+        std::cout << "left::clamping"<<std::endl;
+    }
+    else{
+        sprintf(buf, "PA%c=%d",forcep_axis,position_hold_half);
         galil(GCmd(g, buf)); // position relative
         // galil(GMotionComplete(g, "C")); //Wait for motion to complete
         std::cout << "right::release"<<std::endl;

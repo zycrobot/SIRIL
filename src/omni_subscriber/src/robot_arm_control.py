@@ -90,6 +90,17 @@ class RobotSDK:
         self.serial_port.readline()
 
 
+    def gotoPositionInmicrometers_V0(self,px,py,pz,vx=3000,vy=3000,vz=2000):
+        '''
+        To fast track trajectory
+        TODO fix robot arm jerks
+        '''
+        command=f"C012 {px} {py} {0} {vx} {vy} {0}\r\n"
+        self.serial_port.write(command.encode('ASCII'))
+        self.serial_port.readline()
+
+
+
     def gotoPositionInmicrometers_V(self,px,py,pz,vx=3000,vy=3000,vz=2000):
         '''
         To fast track trajectory
@@ -123,7 +134,7 @@ def main():
 
     # assert len(sys.argv)==3
     # sdk=RobotSDK('/dev/ttyUSB0') #leftarm
-    sdk=RobotSDK('/dev/ttyUSB1') #rightarm
+    sdk=RobotSDK('/dev/ttyUSB'+sys.argv[4]) #rightarm
     sdk.swichToRemoteControl()
     
     x,y,z=sdk.positionQueryInMicrometers()

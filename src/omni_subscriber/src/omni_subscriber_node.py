@@ -26,7 +26,7 @@ def pose_callback_left(data):
     if x1 is None and  y1 is None and z1 is None:
         x1,y1,z1=x,y,z
     #control
-    arm.gotoPositionInmicrometers_V(x0+(x-x1),y0+(y-y1),z0+(z-z1),vx,vy,vz)
+    arm.gotoPositionInmicrometers_V0(x0+(x-x1),y0+(y-y1),z0+(z-z1),vx,vy,vz)
     #record data
     state = OmniState()
     state.header.stamp = rospy.Time.now()
@@ -58,7 +58,7 @@ def pose_callback_right(data):
     if x1 is None and  y1 is None and z1 is None:
         x1,y1,z1=x,y,z
     # print('right',y0-(y-y1),x0+(x-x1),z0-(z-z1),vy,vx,vz)
-    arm.gotoPositionInmicrometers_V(y0-(y-y1),x0+(x-x1),z0-(z-z1),vy,vx,vz)
+    arm.gotoPositionInmicrometers_V0(y0-(y-y1),x0+(x-x1),z0-(z-z1),vy,vx,vz)
     state = OmniState()
     state.header.stamp = rospy.Time.now()
     state.header.frame_id = "right_micro"  # 指定参考坐标系

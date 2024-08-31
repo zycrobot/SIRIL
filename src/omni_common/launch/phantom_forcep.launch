@@ -68,7 +68,7 @@
 
 
 
-  <arg name="bagfile_name" default="/media/microlab/data/ubuntu_data_file/bagdata/bagdata/phantom_forcep_$(arg timestamp).bag"/>   
+  <arg name="bagfile_name" default="/media/microlab/data/ubuntu_data_file/bagdata/bagdata/demo_peeling_$(arg timestamp).bag"/>   
   <arg name="timestamp" default=""/>  
 
 
