@@ -7,4 +7,4 @@
 
 - [x] master-slave control for biarm
 - [x] master-slave control for forcep
-- [ ] imitation learning API
+- [x] imitation learning API by ros topic
