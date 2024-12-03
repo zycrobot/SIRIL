@@ -9,10 +9,10 @@
 ### End-effector
 <img src="./2dof_forcep_sw/gripper.png" alt="forcep" style="width: 500px; height: auto;">
 
-<div style="display: flex; justify-content: space-between;">
-  <img src="./2dof_forcep_sw/grasp.gif" alt="First GIF" style="width: 49%;"/>
-  <img src="./2dof_forcep_sw/rotate.gif" alt="Second GIF" style="width: 49%;"/>
-</div>
+
+<img src="./2dof_forcep_sw/grasp.gif" alt="First GIF" style="width: 49%;"/>
+<img src="./2dof_forcep_sw/rotate.gif" alt="Second GIF" style="width: 49%;"/>
+
 
 
 
