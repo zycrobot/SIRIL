@@ -17,7 +17,7 @@ The robotic system primarily consists of two symmetric three-axis micromanipulat
 </div>
 The microgripper has two degrees of freedom: a gripping action and a wrist-like rotational motion. Axial rotation is achieved by driving a set of rotating gears with DC motor 1. The gripping action is performed by DC motor 2, which pushes a sliding sleeve through a cylindrical cam mechanism. Three Fiber Bragg Gratings (FBGs) are integrated on the sliding sleeve to sense bending deformation, providing force sensing and collision detection to prevent breakage of the microgripper.
 
-<table>
+<table align=center>
 
   <tr>
     <td>
@@ -43,7 +43,12 @@ The microgripper has two degrees of freedom: a gripping action and a wrist-like 
 
 
 ## SIRIL
-<img src="./2dof_forcep_sw/SIRIL.png" alt="forcep" style="width: 800px; height: auto;">
+
+<div align=center>
+  <img src="./2dof_forcep_sw/SIRIL.png" alt="forcep" style="width: 800px; height: auto;">
+</div>
+
+
 
 ## Source code for robot system
 1. phantom touch as master device
