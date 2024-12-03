@@ -6,14 +6,14 @@
 ### Robot overview
 
 <div align=center>
-  <img src="./2dof_forcep_sw/1.png" alt="forcep" style="width: 100%; height: auto;">
+  <img src="./2dof_forcep_sw/1.png" alt="forcep" style="width: 80%; height: auto;">
 </div>
 a, Images under the microscope about robot performing collaborative, long-horizon dexterity micromanipulation task of cell membrane peeling. The task mainly includes three sub-tasks: reaching and pushing the cell, grasping the cell, and tearing off the cell membrane. The scale bar is 800 $\mu$m. b, Hardware structure diagram of the robot system. The robotic system primarily consists of two symmetric three-axis micromanipulation robotic arms, motor controllers, two force-feedback devices, and a micromanipulation end-effector integrated at the end of each robotic arm.
 
 
 ### End-effector
 <div align=center>
-  <img src="./2dof_forcep_sw/2.png" alt="forcep" style="width: 600px; height: auto;">
+  <img src="./2dof_forcep_sw/2.png" alt="forcep" style="width: 500px; height: auto;">
 </div>
 a, Schematic of the mechanical structure of the microgripper. The microgripper has two degrees of freedom: a gripping action and a wrist-like rotational motion. Axial rotation is achieved by driving a set of rotating gears with DC motor 1. The gripping action is performed by DC motor 2, which pushes a sliding sleeve through a cylindrical cam mechanism. Three Fiber Bragg Gratings (FBGs) are integrated on the sliding sleeve to sense bending deformation, providing force sensing and collision detection to prevent breakage of the microgripper. b, Diagram of Data Communication Nodes in the Robotic System. The software and control part of the system was integrated into the Robot Operating System (ROS) Melodic.
 
