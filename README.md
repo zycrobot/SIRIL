@@ -12,7 +12,7 @@
 ## SIRIL
 <img src="./2dof_forcep_sw/SIRIL.png" alt="forcep" style="width: 600px; height: auto;">
 
-## Here are source code for remote-micro-biarm-robot system
+## Source code for robot system
 1. phantom touch as master device
 2. eppendorf TranferMan 4R as slave device (velocity-control)
 3. self-designed 2-dof forcep
