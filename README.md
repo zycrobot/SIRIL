@@ -6,7 +6,7 @@
 ### robot overview
 
 ### forcep
-![forcep](./2dof_forcep_sw/gripper.png)
+<img src="./2dof_forcep_sw/gripper.png" alt="forcep" style="width: 300px; height: auto;">
 
 ## SIRIL
 
