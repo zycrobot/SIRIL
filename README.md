@@ -1,4 +1,4 @@
-# Skill Information Representation Imitation Learning for Long-horizon Dexterous Robot Micromanipulation of Deformable Cell
+# Imitation Learning for Dexterous Robot Micromanipulation of Deformable Cell
 
 
 
