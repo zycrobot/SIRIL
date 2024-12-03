@@ -9,6 +9,17 @@
 ### End-effector
 <img src="./2dof_forcep_sw/gripper.png" alt="forcep" style="width: 600px; height: auto;">
 
+<div style="display: flex; justify-content: space-between;">
+  <video width="320" height="240" controls>
+    <source src=./2dof_forcep_sw/grasp2.mp4 type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <video width="320" height="240" controls>
+    <source src=./2dof_forcep_sw/rotate2.mp4 type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
+
 ## SIRIL
 <img src="./2dof_forcep_sw/SIRIL.png" alt="forcep" style="width: 600px; height: auto;">
 
