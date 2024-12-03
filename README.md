@@ -9,7 +9,7 @@
   <img src="./2dof_forcep_sw/1.png" alt="forcep" style="width: 80%; height: auto;">
 </div>
 
-a, Images under the microscope about robot performing collaborative, long-horizon dexterity micromanipulation task of cell membrane peeling. The task mainly includes three sub-tasks: reaching and pushing the cell, grasping the cell, and tearing off the cell membrane. The scale bar is 800 $\mu$ m. b, Hardware structure diagram of the robot system. The robotic system primarily consists of two symmetric three-axis micromanipulation robotic arms, motor controllers, two force-feedback devices, and a micromanipulation end-effector integrated at the end of each robotic arm.
+a, Images under the microscope about robot performing collaborative, long-horizon dexterity micromanipulation task of cell membrane peeling. The task mainly includes three sub-tasks: reaching and pushing the cell, grasping the cell, and tearing off the cell membrane. The scale bar is 800 $\mu$m. b, Hardware structure diagram of the robot system. The robotic system primarily consists of two symmetric three-axis micromanipulation robotic arms, motor controllers, two force-feedback devices, and a micromanipulation end-effector integrated at the end of each robotic arm.
 
 
 ### End-effector
