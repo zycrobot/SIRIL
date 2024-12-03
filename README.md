@@ -10,8 +10,16 @@
 <img src="./2dof_forcep_sw/gripper.png" alt="forcep" style="width: 500px; height: auto;">
 
 
-<img src="./2dof_forcep_sw/grasp.gif" alt="First GIF" style="width: 49%;"/>
-<img src="./2dof_forcep_sw/rotate.gif" alt="Second GIF" style="width: 49%;"/>
+<table>
+  <tr>
+    <td>
+      <img src="./2dof_forcep_sw/grasp.gif" alt="First GIF" style="width: 100%;"/>
+    </td>
+    <td>
+      <img src="./2dof_forcep_sw/rotate.gif" alt="Second GIF" style="width: 100%;"/>
+    </td>
+  </tr>
+</table>
 
 
 
