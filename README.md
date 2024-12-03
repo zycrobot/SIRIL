@@ -11,6 +11,16 @@
 
 
 <table>
+
+  <tr>
+    <td>
+      grasp
+    </td>
+    <td>
+      rotate
+    </td>
+  </tr>
+
   <tr>
     <td>
       <img src="./2dof_forcep_sw/grasp.gif" alt="First GIF" style="width: 100%;"/>
