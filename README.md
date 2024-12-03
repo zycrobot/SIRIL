@@ -10,13 +10,7 @@
 <img src="./2dof_forcep_sw/gripper.png" alt="forcep" style="width: 500px; height: auto;">
 
 
-<iframe height=498 width=510 src="./2dof_forcep_sw/grasp2.mp4">
 
-
-<source src=./2dof_forcep_sw/grasp2.mp4 type="video/mp4">
-
-
-<source src=src=./2dof_forcep_sw/rotate2.mp4 type="video/mp4">
 
 
 ## SIRIL
