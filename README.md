@@ -2,13 +2,14 @@
 
 
 
-## robot design
-### robot overview
-
-### forcep
+## Robot design
+### Robot overview
+<img src="./2dof_forcep_sw/arm_haptic.png" alt="forcep" style="width: 600px; height: auto;">
+### End-effector
 <img src="./2dof_forcep_sw/gripper.png" alt="forcep" style="width: 600px; height: auto;">
 
 ## SIRIL
+<img src="./2dof_forcep_sw/SIRIL.png" alt="forcep" style="width: 600px; height: auto;">
 
 ## Here are source code for remote-micro-biarm-robot system
 1. phantom touch as master device
