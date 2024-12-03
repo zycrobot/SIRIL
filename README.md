@@ -5,6 +5,7 @@
 ## Robot design
 ### Robot overview
 <img src="./2dof_forcep_sw/arm_haptic.png" alt="forcep" style="width: 600px; height: auto;">
+
 ### End-effector
 <img src="./2dof_forcep_sw/gripper.png" alt="forcep" style="width: 600px; height: auto;">
 
