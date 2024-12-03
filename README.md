@@ -98,10 +98,8 @@ SIRIL and Baselines Success Rate
 
 </table>
 
-
+### 📹Automated surgery
 <table align=center>
-
-
 
   <tr align=center>
     <td>
