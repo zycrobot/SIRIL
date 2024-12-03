@@ -1,0 +1,3 @@
+domain: cell
+latent_size: 8
+epochs: 1000
