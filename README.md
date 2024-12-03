@@ -3,6 +3,7 @@
 2. eppendorf TranferMan 4R as slave device (velocity-control)
 3. self-designed 2-dof forcep
 4. micro machine vision system
+5. SIRIL
 
 
 - [x] master-slave control for biarm
