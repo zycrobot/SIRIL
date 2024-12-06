@@ -2,7 +2,7 @@
 
 
 
-## 1.Robot design 🦾
+## 1.Robot design 🤖
 ### Robot overview
 
 <div align=center>
@@ -48,7 +48,7 @@ a, Schematic of the mechanical structure of the microgripper. The microgripper h
 
 
 
-## 2.Imitation Learning🤖
+## 2.Imitation Learning
 
 ### 👨‍⚕️Get expert data
 <div align=center>
