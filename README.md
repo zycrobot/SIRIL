@@ -1,6 +1,8 @@
 # Imitation Learning for Dexterous Robot Micromanipulation of Deformable Cell
 
-
+\item Skill information representation imitation learning algorithm was proposed for long-horizon dexterous robot micromanipulation tasks. SIRIL quantifies the representation of the expert's skill information by temporal log-likelihood of the latent discrete codes and extracts the safety action constraints, which effectively suppresses the compound error.
+\item A 2-DOF microgripper for cell dexterity manipulation was designed and integrated into robotic arm. A visual, force feedback master-slave dual robotic arm robot micromanipulation system was constructed.
+\item Physical experiments show that SIRIL algorithm can complete the deformable zebrafish embryonic cells dexterous membrane stripping surgery, and outperform existing algorithms.
 
 ## 1.Robot design 🤖
 ### Robot overview
