@@ -1,8 +1,0 @@
-prefix=/home/microlab/testTouch/install
-
-Name: forcep
-Description: Description of forcep
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: geometry_msgs omni_msgs robot_state_publisher roscpp sensor_msgs std_msgs
